@@ -1,0 +1,29 @@
+# Acrescentar ao .gitignore do repositório — dados de clientes e segredos NUNCA entram no Git
+*.pdf
+*.PDF
+*.docx
+*.doc
+*.xlsx
+*.xls
+*.csv
+*.jpg
+*.jpeg
+*.png
+*.heic
+/data/
+/clientes/
+/casos/
+/uploads/
+/exports/
+mapa*.json
+*mapa-pseudonimos*
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+supabase/.temp/
+.DS_Store
+# Exceção: fixtures sintéticas e documentação, liberadas por pasta
+!tests/golden/**
+!docs/exemplos/**

@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revisional — Cálculo de Contratos Bancários</title>
+<style>
+  :root{--bg:#f5f6f8;--card:#fff;--ink:#14213d;--muted:#5b6478;--line:#dfe3ea;--brand:#1d3557;--accent:#b8860b;--ok:#1a7f4b;--warn:#b42318;--info:#175cd3}
+  @media (prefers-color-scheme:dark){:root{--bg:#0f141b;--card:#171e28;--ink:#e8ecf3;--muted:#9aa5b8;--line:#2a3445;--brand:#8fb3e8;--accent:#e0b84a;--ok:#4cc38a;--warn:#ff8a7a;--info:#7db2ff}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  header{background:var(--brand);color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  @media (prefers-color-scheme:dark){header{color:#0f141b}}
+  header h1{margin:0;font-size:18px;font-weight:650;letter-spacing:.2px}
+  header small{opacity:.8}
+  main{max-width:1200px;margin:0 auto;padding:16px;display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:16px}
+  @media (max-width:860px){main{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px}
+  h2{margin:0 0 10px;font-size:15px;color:var(--brand)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  label{display:block;font-size:12px;color:var(--muted);margin-bottom:3px}
+  input[type=text],input[type=password],input[type=email]{width:100%;padding:8px 9px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);font:inherit}
+  input:focus{outline:2px solid var(--brand);outline-offset:0}
+  .full{grid-column:1/-1}
+  .chk{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink);margin-top:4px}
+  .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  button{padding:8px 13px;border:1px solid var(--brand);border-radius:7px;background:var(--brand);color:#fff;font:inherit;cursor:pointer}
+  @media (prefers-color-scheme:dark){button{color:#0f141b}}
+  button.ghost{background:transparent;color:var(--brand)}
+  button.danger{border-color:var(--warn);color:var(--warn);background:transparent}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:12px}
+  .kpi{border:1px solid var(--line);border-radius:9px;padding:10px 12px;background:var(--bg)}
+  .kpi span{display:block;font-size:12px;color:var(--muted)}
+  .kpi b{font-size:19px}
+  .kpi.main{border-color:var(--accent)}
+  .kpi.main b{color:var(--accent)}
+  .flags{margin:0 0 12px;padding:0;list-style:none;display:grid;gap:6px}
+  .flags li{padding:8px 10px;border-radius:7px;font-size:13px;border-left:4px solid var(--info);background:var(--bg)}
+  .flags li.alerta{border-left-color:var(--warn)}
+  .tablewrap{max-height:340px;overflow:auto;border:1px solid var(--line);border-radius:8px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:6px 9px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+  th{position:sticky;top:0;background:var(--card);color:var(--muted);font-weight:600}
+  th:first-child,td:first-child{text-align:left}
+  tfoot td{font-weight:700;background:var(--bg)}
+  .cases{display:grid;gap:6px;margin-top:8px}
+  .case{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--bg)}
+  .case .meta{font-size:12px;color:var(--muted)}
+  .case button{padding:4px 9px;font-size:12px}
+  .note{font-size:12px;color:var(--muted);margin-top:10px}
+  .banner{font-size:13px;padding:8px 12px;background:var(--bg);border:1px dashed var(--line);border-radius:8px;margin-bottom:10px}
+  #login{max-width:360px;margin:60px auto}
+  .hidden{display:none!important}
+  /* Laudo impresso */
+  #laudo{display:none}
+  @media print{
+    body{background:#fff;color:#000}
+    header,main{display:none!important}
+    #laudo{display:block;padding:10mm;font-size:12px}
+    #laudo h1{font-size:18px;margin:0 0 4px}
+    #laudo table{font-size:11px}
+    #laudo th,#laudo td{border:1px solid #999;color:#000;background:#fff;position:static}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div><h1>Revisional <small>· cálculo de contratos bancários</small></h1></div>
+  <div id="userbox" class="hidden"><span id="userEmail"></span> <button class="ghost" id="btnLogout" style="color:#fff;border-color:#fff">Sair</button></div>
+</header>
+
+<div id="login" class="card hidden">
+  <h2>Entrar</h2>
+  <label for="lgEmail">E-mail</label><input type="email" id="lgEmail" autocomplete="username">
+  <label for="lgPass" style="margin-top:8px">Senha</label><input type="password" id="lgPass" autocomplete="current-password">
+  <div class="btns"><button id="btnLogin">Entrar</button></div>
+  <p class="note" id="lgMsg"></p>
+</div>
+
+<main id="app" class="hidden">
+  <section>
+    <div class="card">
+      <h2>Dados do caso</h2>
+      <div id="modeBanner" class="banner hidden"></div>
+      <div class="grid2">
+        <div class="full"><label for="cliente">Cliente</label><input type="text" id="cliente"></div>
+        <div><label for="banco">Banco / instituição</label><input type="text" id="banco"></div>
+        <div><label for="contrato">Nº do contrato</label><input type="text" id="contrato"></div>
+      </div>
+      <h2 style="margin-top:14px">Contrato</h2>
+      <div class="grid2">
+        <div><label for="valor">Valor financiado (R$)</label><input type="text" id="valor" inputmode="decimal" value="30.000,00"></div>
+        <div><label for="n">Nº de parcelas</label><input type="text" id="n" inputmode="numeric" value="48"></div>
+        <div><label for="taxaM">Taxa mensal contratada (% a.m.)</label><input type="text" id="taxaM" inputmode="decimal" value="1,99"></div>
+        <div><label for="taxaA">Taxa anual contratada (% a.a., opcional)</label><input type="text" id="taxaA" inputmode="decimal"></div>
+        <div><label for="parcela">Parcela cobrada (R$, opcional)</label><input type="text" id="parcela" inputmode="decimal" value="1.400,00"></div>
+        <div><label for="pagas">Parcelas já pagas</label><input type="text" id="pagas" inputmode="numeric" value="20"></div>
+        <div class="full"><label for="encargos">Encargos financiados a excluir (R$: TAC, tarifas, seguro prestamista…)</label><input type="text" id="encargos" inputmode="decimal" value="1.200,00"></div>
+      </div>
+      <h2 style="margin-top:14px">Parâmetros da revisão</h2>
+      <div class="grid2">
+        <div class="full"><label for="ref">Taxa de referência (% a.m. — ex.: média BACEN/SGS na data da contratação)</label><input type="text" id="ref" inputmode="decimal" value="1,80"></div>
+        <div><label for="indice">Correção monetária (% a.m.)</label><input type="text" id="indice" inputmode="decimal" value="0,40"></div>
+        <div><label for="mora">Juros de mora (% a.m., simples)</label><input type="text" id="mora" inputmode="decimal" value="1,00"></div>
+        <div class="full"><label for="extra">Meses entre a última parcela paga e a data-base</label><input type="text" id="extra" inputmode="numeric" value="2"></div>
+      </div>
+      <label class="chk"><input type="checkbox" id="dobro"> Repetição do indébito em dobro (CDC, art. 42, par. único)</label>
+      <div class="btns">
+        <button id="btnSave">Salvar caso</button>
+        <button class="ghost" id="btnNew">Novo</button>
+        <button class="ghost" id="btnCsv">Exportar CSV</button>
+        <button class="ghost" id="btnPrint">Imprimir laudo</button>
+      </div>
+      <p class="note">Ferramenta de apoio ao cálculo (Tabela Price). Não substitui perícia contábil nem a análise do advogado: confira índices, taxas de referência e jurisprudência vigente antes de peticionar.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>Resultado</h2>
+      <div class="kpis" id="kpis"></div>
+      <ul class="flags" id="flags"></ul>
+      <div class="tablewrap"><table id="tbl"></table></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h2>Casos salvos</h2>
+      <input type="text" id="busca" placeholder="Buscar por cliente, banco ou contrato">
+      <div class="cases" id="cases"></div>
+    </div>
+  </section>
+</main>
+
+<div id="laudo"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="calc.js"></script>
+<script>
+(function () {
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+  const cfg = window.APP_CONFIG || {};
+  const useCloud = !!(cfg.SUPABASE_URL && cfg.SUPABASE_ANON_KEY && window.supabase);
+  const sb = useCloud ? window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY) : null;
+
+  /* ---------- utilidades ---------- */
+  const brl = (x) => (x == null || isNaN(x)) ? "—" : x.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  const pct = (x, d = 2) => (x == null || isNaN(x)) ? "—" : (x * 100).toLocaleString("pt-BR", { minimumFractionDigits: d, maximumFractionDigits: d }) + "%";
+  function num(s) {
+    s = String(s == null ? "" : s).trim();
+    if (!s) return 0;
+    if (s.indexOf(",") >= 0) s = s.replace(/\./g, "").replace(",", ".");
+    const v = parseFloat(s);
+    return isNaN(v) ? 0 : v;
+  }
+  function el(tag, props, children) {
+    const e = document.createElement(tag);
+    Object.keys(props || {}).forEach((k) => { if (k === "text") e.textContent = props[k]; else if (k === "class") e.className = props[k]; else e.setAttribute(k, props[k]); });
+    (children || []).forEach((c) => e.appendChild(c));
+    return e;
+  }
+
+  const FIELDS = ["cliente", "banco", "contrato", "valor", "n", "taxaM", "taxaA", "parcela", "pagas", "encargos", "ref", "indice", "mora", "extra"];
+  let currentId = null;
+  let last = null; // { params, res }
+
+  function readParams() {
+    return {
+      valor: num($("valor").value), n: Math.round(num($("n").value)),
+      taxaContratada: num($("taxaM").value) / 100,
+      taxaAnualContratada: num($("taxaA").value) / 100,
+      parcelaPactuada: num($("parcela").value),
+      taxaReferencia: num($("ref").value) / 100,
+      pagas: Math.round(num($("pagas").value)),
+      encargos: num($("encargos").value),
+      indiceMensal: num($("indice").value) / 100,
+      jurosMora: num($("mora").value) / 100,
+      mesesDesdeUltima: Math.round(num($("extra").value)),
+      dobro: $("dobro").checked
+    };
+  }
+
+  /* ---------- cálculo e render ---------- */
+  function recalc() {
+    const p = readParams();
+    const kp = $("kpis"), fl = $("flags"), tb = $("tbl");
+    kp.replaceChildren(); fl.replaceChildren(); tb.replaceChildren();
+    if (p.valor <= 0 || p.n <= 0 || (p.taxaContratada <= 0 && !(p.parcelaPactuada > 0))) { last = null; return; }
+    const r = Calc.revisar(p);
+    last = { params: p, res: r };
+
+    const items = [
+      ["Taxa efetiva cobrada", pct(r.taxaEfetiva) + " a.m. (" + pct(r.taxaEfetivaAnual) + " a.a.)"],
+      ["Taxa de referência", pct(p.taxaReferencia) + " a.m. (" + pct(r.referenciaAnual) + " a.a.)"],
+      ["Relação efetiva/referência", r.razao == null ? "—" : r.razao.toFixed(2) + "x"],
+      ["Parcela revisada", brl(r.parcelaRevisada)],
+      ["Diferença por parcela", brl(r.difPorParcela)],
+      ["Pago a maior (nominal)", brl(r.totalPagoMais)],
+      ["Redução do saldo devedor", brl(r.reducaoSaldo)],
+      [r.dobro ? "Indébito em dobro (corrigido + mora)" : "Indébito (corrigido + mora)", brl(r.indebito), true]
+    ];
+    items.forEach((it) => {
+      kp.appendChild(el("div", { class: "kpi" + (it[2] ? " main" : "") }, [el("span", { text: it[0] }), el("b", { text: it[1] })]));
+    });
+    r.flags.forEach((f) => fl.appendChild(el("li", { class: f.tipo, text: f.msg })));
+
+    const thead = el("thead", {}, [el("tr", {}, ["Parcela", "Cobrada", "Revisada", "Diferença", "Corrigida", "Mora", "Total"].map((h) => el("th", { text: h })))]);
+    const tbody = el("tbody");
+    r.rows.forEach((x) => {
+      tbody.appendChild(el("tr", {}, [String(x.k), brl(x.parcelaPaga), brl(x.parcelaRevisada), brl(x.dif), brl(x.corrigido), brl(x.juros), brl(x.total)].map((t) => el("td", { text: t }))));
+    });
+    const tfoot = el("tfoot", {}, [el("tr", {}, ["Totais", "", "", brl(r.totalPagoMais), brl(r.totalCorrigido), brl(r.totalJuros), brl(r.totalCorrigido + r.totalJuros)].map((t) => el("td", { text: t })))]);
+    tb.appendChild(thead); tb.appendChild(tbody); tb.appendChild(tfoot);
+  }
+
+  /* ---------- armazenamento (local ou Supabase) ---------- */
+  const LS = "revisional_casos";
+  const store = {
+    async list() {
+      if (useCloud) {
+        const { data, error } = await sb.from("casos").select("*").order("criado_em", { ascending: false }).limit(200);
+        if (error) throw error;
+        return data;
+      }
+      return JSON.parse(localStorage.getItem(LS) || "[]");
+    },
+    async save(row) {
+      if (useCloud) {
+        if (row.id) {
+          const { error } = await sb.from("casos").update({ cliente: row.cliente, contrato: row.contrato, banco: row.banco, dados: row.dados, resultado: row.resultado }).eq("id", row.id);
+          if (error) throw error; return row.id;
+        }
+        const { data, error } = await sb.from("casos").insert({ cliente: row.cliente, contrato: row.contrato, banco: row.banco, dados: row.dados, resultado: row.resultado }).select("id").single();
+        if (error) throw error; return data.id;
+      }
+      const all = JSON.parse(localStorage.getItem(LS) || "[]");
+      if (row.id) {
+        const i = all.findIndex((c) => c.id === row.id);
+        if (i >= 0) all[i] = Object.assign(all[i], row);
+      } else {
+        row.id = "l" + Date.now(); row.criado_em = new Date().toISOString(); all.unshift(row);
+      }
+      localStorage.setItem(LS, JSON.stringify(all));
+      return row.id;
+    },
+    async remove(id) {
+      if (useCloud) { const { error } = await sb.from("casos").delete().eq("id", id); if (error) throw error; return; }
+      const all = JSON.parse(localStorage.getItem(LS) || "[]").filter((c) => c.id !== id);
+      localStorage.setItem(LS, JSON.stringify(all));
+    }
+  };
+
+  function snapshotFields() {
+    const o = {}; FIELDS.forEach((f) => { o[f] = $(f).value; }); o.dobro = $("dobro").checked; return o;
+  }
+  function loadFields(o) {
+    FIELDS.forEach((f) => { $(f).value = o[f] == null ? "" : o[f]; }); $("dobro").checked = !!o.dobro; recalc();
+  }
+
+  async function saveCase() {
+    if (!$("cliente").value.trim()) { alert("Informe o nome do cliente."); $("cliente").focus(); return; }
+    if (!last) { alert("Preencha os dados do contrato para calcular antes de salvar."); return; }
+    const r = last.res;
+    const row = {
+      id: currentId, cliente: $("cliente").value.trim(), banco: $("banco").value.trim(), contrato: $("contrato").value.trim(),
+      dados: snapshotFields(),
+      resultado: { taxaEfetiva: r.taxaEfetiva, razao: r.razao, totalPagoMais: r.totalPagoMais, indebito: r.indebito, reducaoSaldo: r.reducaoSaldo, dobro: r.dobro }
+    };
+    try { currentId = await store.save(row); await renderCases(); } catch (e) { alert("Não foi possível salvar: " + (e.message || e)); }
+  }
+
+  async function renderCases() {
+    const box = $("cases"); box.replaceChildren();
+    let list = [];
+    try { list = await store.list(); } catch (e) { box.appendChild(el("div", { class: "note", text: "Erro ao carregar casos: " + (e.message || e) })); return; }
+    const q = $("busca").value.trim().toLowerCase();
+    list = list.filter((c) => !q || [c.cliente, c.banco, c.contrato].join(" ").toLowerCase().indexOf(q) >= 0);
+    if (!list.length) { box.appendChild(el("div", { class: "note", text: "Nenhum caso salvo." })); return; }
+    list.forEach((c) => {
+      const meta = [c.banco, c.contrato && ("Contrato " + c.contrato), c.resultado && brl(c.resultado.indebito)].filter(Boolean).join(" · ");
+      const info = el("div", {}, [el("b", { text: c.cliente }), el("div", { class: "meta", text: meta })]);
+      const open = el("button", { class: "ghost", text: "Abrir" });
+      open.addEventListener("click", () => { currentId = c.id; loadFields(c.dados); window.scrollTo({ top: 0, behavior: "smooth" }); });
+      const del = el("button", { class: "danger", text: "Excluir" });
+      del.addEventListener("click", async () => {
+        if (!confirm("Excluir o caso de " + c.cliente + "?")) return;
+        try { await store.remove(c.id); if (currentId === c.id) currentId = null; await renderCases(); } catch (e) { alert("Não foi possível excluir: " + (e.message || e)); }
+      });
+      box.appendChild(el("div", { class: "case" }, [info, el("div", { class: "btns", style: "margin:0" }, [open, del])]));
+    });
+  }
+
+  /* ---------- exportações ---------- */
+  function csvCell(v) { v = String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+  function exportCsv() {
+    if (!last) return;
+    const r = last.res;
+    const lines = [["Parcela", "Cobrada", "Revisada", "Diferenca", "Corrigida", "Mora", "Total"].map(csvCell).join(";")];
+    r.rows.forEach((x) => lines.push([x.k, x.parcelaPaga, x.parcelaRevisada, x.dif, x.corrigido, x.juros, x.total].map((v) => csvCell(typeof v === "number" ? v.toFixed(2).replace(".", ",") : v)).join(";")));
+    const blob = new Blob(["﻿" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });
+    const a = el("a", { href: URL.createObjectURL(blob), download: "revisional-" + ($("cliente").value.trim().replace(/[^\w\-]+/g, "_") || "caso") + ".csv" });
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+
+  function printLaudo() {
+    if (!last) return;
+    const p = last.params, r = last.res, L = $("laudo");
+    L.replaceChildren();
+    L.appendChild(el("h1", { text: "Demonstrativo de Cálculo Revisional" }));
+    L.appendChild(el("p", { text: "Cliente: " + ($("cliente").value || "—") + " | Banco: " + ($("banco").value || "—") + " | Contrato: " + ($("contrato").value || "—") + " | Emitido em " + new Date().toLocaleDateString("pt-BR") }));
+    const resumo = [
+      ["Valor financiado", brl(p.valor)], ["Prazo", p.n + " parcelas"], ["Parcelas pagas", String(p.pagas)],
+      ["Taxa contratada", pct(p.taxaContratada) + " a.m."], ["Taxa efetiva cobrada", pct(r.taxaEfetiva) + " a.m. / " + pct(r.taxaEfetivaAnual) + " a.a."],
+      ["Taxa de referência adotada", pct(p.taxaReferencia) + " a.m. / " + pct(r.referenciaAnual) + " a.a."],
+      ["Encargos excluídos", brl(p.encargos)], ["Parcela cobrada", brl(r.parcelaContratual)], ["Parcela revisada", brl(r.parcelaRevisada)],
+      ["Pago a maior (nominal)", brl(r.totalPagoMais)], ["Correção (" + pct(p.indiceMensal) + " a.m.)", brl(r.totalCorrigido - r.totalPagoMais)],
+      ["Juros de mora (" + pct(p.jurosMora) + " a.m., simples)", brl(r.totalJuros)],
+      [r.dobro ? "Indébito apurado (em dobro)" : "Indébito apurado", brl(r.indebito)],
+      ["Saldo devedor contratual / revisado", brl(r.saldoContratual) + " / " + brl(r.saldoRevisado)]
+    ];
+    const t1 = el("table"); resumo.forEach((x) => t1.appendChild(el("tr", {}, [el("th", { text: x[0] }), el("td", { text: x[1] })])));
+    L.appendChild(t1);
+    const t2 = el("table", { style: "margin-top:12px" });
+    t2.appendChild(el("tr", {}, ["Parcela", "Cobrada", "Revisada", "Diferença", "Corrigida", "Mora", "Total"].map((h) => el("th", { text: h }))));
+    r.rows.forEach((x) => t2.appendChild(el("tr", {}, [String(x.k), brl(x.parcelaPaga), brl(x.parcelaRevisada), brl(x.dif), brl(x.corrigido), brl(x.juros), brl(x.total)].map((v) => el("td", { text: v })))));
+    L.appendChild(t2);
+    L.appendChild(el("p", { style: "margin-top:10px;font-size:10px", text: "Cálculo pelo método da Tabela Price. Documento de apoio, sujeito à conferência pelo advogado responsável." }));
+    window.print();
+  }
+
+  /* ---------- auth ---------- */
+  function showApp(email) {
+    $("login").classList.add("hidden"); $("app").classList.remove("hidden");
+    if (email) { $("userbox").classList.remove("hidden"); $("userEmail").textContent = email; }
+    const b = $("modeBanner");
+    if (!useCloud) { b.textContent = "Modo local: os casos ficam salvos apenas neste navegador. Configure o Supabase em config.js para compartilhar com o escritório."; b.classList.remove("hidden"); }
+    recalc(); renderCases();
+  }
+  async function boot() {
+    FIELDS.concat(["dobro"]).forEach((f) => $(f).addEventListener("input", recalc));
+    $("dobro").addEventListener("change", recalc);
+    $("busca").addEventListener("input", renderCases);
+    $("btnSave").addEventListener("click", saveCase);
+    $("btnNew").addEventListener("click", () => { currentId = null; FIELDS.forEach((f) => { $(f).value = ""; }); $("mora").value = "1,00"; $("dobro").checked = false; recalc(); $("cliente").focus(); });
+    $("btnCsv").addEventListener("click", exportCsv);
+    $("btnPrint").addEventListener("click", printLaudo);
+    if (!useCloud) { showApp(null); return; }
+    $("btnLogin").addEventListener("click", async () => {
+      $("lgMsg").textContent = "";
+      const { data, error } = await sb.auth.signInWithPassword({ email: $("lgEmail").value.trim(), password: $("lgPass").value });
+      if (error) { $("lgMsg").textContent = "Falha no login: " + error.message; return; }
+      showApp(data.user.email);
+    });
+    $("btnLogout").addEventListener("click", async () => { await sb.auth.signOut(); location.reload(); });
+    const { data } = await sb.auth.getSession();
+    if (data.session) showApp(data.session.user.email); else $("login").classList.remove("hidden");
+  }
+  boot();
+})();
+</script>
+</body>
+</html>

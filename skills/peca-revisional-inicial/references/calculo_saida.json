@@ -1,0 +1,306 @@
+{
+  "calc_version": "1.0.0",
+  "regras_versao": "kb-2026-10-27",
+  "entrada_sha256": "b4972d99aa178bad09e882a517e69be0da4ce81ed94a678604e2f46a250ca10c",
+  "referencia_usada": {
+    "serie": "SGS 25471",
+    "competencia": "2022-05",
+    "data_consulta": "2026-10-27",
+    "valor_bruto_percentual": 1.8,
+    "taxa_mensal": 0.018,
+    "observacao": "Valor ilustrativo de teste. Substituir pelo valor lido da série oficial do mês de contratação."
+  },
+  "resumo": {
+    "parcela_cobrada": 1400.0,
+    "parcela_pela_taxa_informada": 976.07,
+    "parcela_revisada": 901.13,
+    "diferenca_por_parcela": 498.87,
+    "taxa_efetiva_mensal": 0.039347,
+    "taxa_efetiva_anual": 0.589007,
+    "taxa_referencia_mensal": 0.018,
+    "taxa_referencia_anual": 0.238721,
+    "razao_efetiva_referencia": 2.1859,
+    "parcelas_pagas": 20,
+    "total_pago_a_maior_nominal": 9977.35,
+    "total_corrigido": 11825.33,
+    "total_juros": 3132.14,
+    "indebito_simples_total": 14957.47,
+    "indebito_pagamentos_antes_da_modulacao": 0.0,
+    "indebito_em_dobro_pagamentos_apos_modulacao": 29914.93,
+    "indebito_apurado_total": 29914.93,
+    "saldo_devedor_contratual": 23504.99,
+    "saldo_devedor_revisado": 19683.57,
+    "reducao_saldo_devedor": 3821.41,
+    "data_base": "2026-10-27"
+  },
+  "alertas": [
+    {
+      "tipo": "atencao",
+      "codigo": "MULTIPLO_MEDIA",
+      "msg": "Taxa efetiva = 2.19x a taxa de referência (limiar configurado: 1.5x). Indício a investigar, NÃO conclusão de abusividade: a taxa média isoladamente não basta como fundamento (ver legal-kb; Tema 1.378/STJ pendente). Registrar fundamentos adicionais (captação, spread, risco, garantia, idade do veículo)."
+    },
+    {
+      "tipo": "atencao",
+      "codigo": "SEM_TAXA_ANUAL",
+      "msg": "Contrato sem taxa anual informada: conferir se a capitalização inferior à anual foi expressamente pactuada (Súmula 539/STJ; Tema 953)."
+    },
+    {
+      "tipo": "atencao",
+      "codigo": "PARCELA_DIVERGE",
+      "msg": "Parcela cobrada (1400.00) difere da calculada pela taxa informada (976.07): taxa efetiva maior que a declarada."
+    },
+    {
+      "tipo": "info",
+      "codigo": "ENCARGOS_EXCLUIDOS",
+      "msg": "Encargos financiados excluídos na revisão: 1200.00. Cada cobrança depende de prova (Temas 618/619/620, 958, 972)."
+    }
+  ],
+  "linhas": [
+    {
+      "parcela": 1,
+      "data_pagamento": "2022-06-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 613.96,
+      "juros": 220.13,
+      "meses": 52,
+      "multiplicador": 2,
+      "total_apurado": 1668.17
+    },
+    {
+      "parcela": 2,
+      "data_pagamento": "2022-07-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 611.51,
+      "juros": 213.14,
+      "meses": 51,
+      "multiplicador": 2,
+      "total_apurado": 1649.3
+    },
+    {
+      "parcela": 3,
+      "data_pagamento": "2022-08-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 609.08,
+      "juros": 206.2,
+      "meses": 50,
+      "multiplicador": 2,
+      "total_apurado": 1630.54
+    },
+    {
+      "parcela": 4,
+      "data_pagamento": "2022-09-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 606.65,
+      "juros": 199.31,
+      "meses": 49,
+      "multiplicador": 2,
+      "total_apurado": 1611.91
+    },
+    {
+      "parcela": 5,
+      "data_pagamento": "2022-10-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 604.23,
+      "juros": 192.47,
+      "meses": 48,
+      "multiplicador": 2,
+      "total_apurado": 1593.41
+    },
+    {
+      "parcela": 6,
+      "data_pagamento": "2022-11-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 601.82,
+      "juros": 185.69,
+      "meses": 47,
+      "multiplicador": 2,
+      "total_apurado": 1575.02
+    },
+    {
+      "parcela": 7,
+      "data_pagamento": "2022-12-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 599.43,
+      "juros": 178.95,
+      "meses": 46,
+      "multiplicador": 2,
+      "total_apurado": 1556.76
+    },
+    {
+      "parcela": 8,
+      "data_pagamento": "2023-01-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 597.04,
+      "juros": 172.27,
+      "meses": 45,
+      "multiplicador": 2,
+      "total_apurado": 1538.62
+    },
+    {
+      "parcela": 9,
+      "data_pagamento": "2023-02-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 594.66,
+      "juros": 165.64,
+      "meses": 44,
+      "multiplicador": 2,
+      "total_apurado": 1520.59
+    },
+    {
+      "parcela": 10,
+      "data_pagamento": "2023-03-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 592.29,
+      "juros": 159.05,
+      "meses": 43,
+      "multiplicador": 2,
+      "total_apurado": 1502.69
+    },
+    {
+      "parcela": 11,
+      "data_pagamento": "2023-04-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 589.93,
+      "juros": 152.52,
+      "meses": 42,
+      "multiplicador": 2,
+      "total_apurado": 1484.9
+    },
+    {
+      "parcela": 12,
+      "data_pagamento": "2023-05-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 587.58,
+      "juros": 146.04,
+      "meses": 41,
+      "multiplicador": 2,
+      "total_apurado": 1467.24
+    },
+    {
+      "parcela": 13,
+      "data_pagamento": "2023-06-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 585.24,
+      "juros": 139.6,
+      "meses": 40,
+      "multiplicador": 2,
+      "total_apurado": 1449.69
+    },
+    {
+      "parcela": 14,
+      "data_pagamento": "2023-07-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 582.91,
+      "juros": 133.22,
+      "meses": 39,
+      "multiplicador": 2,
+      "total_apurado": 1432.25
+    },
+    {
+      "parcela": 15,
+      "data_pagamento": "2023-08-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 580.59,
+      "juros": 126.88,
+      "meses": 38,
+      "multiplicador": 2,
+      "total_apurado": 1414.93
+    },
+    {
+      "parcela": 16,
+      "data_pagamento": "2023-09-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 578.27,
+      "juros": 120.59,
+      "meses": 37,
+      "multiplicador": 2,
+      "total_apurado": 1397.73
+    },
+    {
+      "parcela": 17,
+      "data_pagamento": "2023-10-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 575.97,
+      "juros": 114.35,
+      "meses": 36,
+      "multiplicador": 2,
+      "total_apurado": 1380.64
+    },
+    {
+      "parcela": 18,
+      "data_pagamento": "2023-11-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 573.67,
+      "juros": 108.16,
+      "meses": 35,
+      "multiplicador": 2,
+      "total_apurado": 1363.67
+    },
+    {
+      "parcela": 19,
+      "data_pagamento": "2023-12-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 571.39,
+      "juros": 102.02,
+      "meses": 34,
+      "multiplicador": 2,
+      "total_apurado": 1346.81
+    },
+    {
+      "parcela": 20,
+      "data_pagamento": "2024-01-10",
+      "cobrada": 1400.0,
+      "revisada": 901.13,
+      "diferenca": 498.87,
+      "corrigida": 569.11,
+      "juros": 95.92,
+      "meses": 33,
+      "multiplicador": 2,
+      "total_apurado": 1330.06
+    }
+  ],
+  "convencoes": [
+    "Tabela Price (parcelas iguais). SAC, carência e pagamentos irregulares não cobertos.",
+    "Correção composta mês a mês e juros simples sobre o valor corrigido, do mês seguinte ao pagamento até o mês da data-base.",
+    "Multiplicador 2 aplicado a pagamentos em/após 2021-03-30 (modulação do EAREsp 676.608/RS), salvo parâmetros em 'repeticao'.",
+    "Taxa de referência informada pelo usuário; guardar série, competência, data da consulta e valor bruto."
+  ]
+}

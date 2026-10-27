@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Extração de contrato de financiamento de veículo",
+  "description": "Cada dado extraído é um objeto 'campo': {valor, pagina, confianca, trecho}. Se o dado não existe no documento, usar valor null e nao_encontrado true. Nunca inferir nem calcular um dado ausente.",
+  "$defs": {
+    "campo": {
+      "type": "object",
+      "required": ["valor", "confianca"],
+      "properties": {
+        "valor": {"description": "Valor extraído ou null se não encontrado"},
+        "pagina": {"type": ["integer", "null"], "description": "Página do PDF onde o dado aparece (1 = primeira)"},
+        "confianca": {"enum": ["alta", "media", "baixa"], "description": "alta = texto claro e inequívoco; media = leitura com alguma dúvida (OCR ruim, ambiguidade); baixa = chute ou ilegível"},
+        "trecho": {"type": ["string", "null"], "description": "Trecho literal curto do documento que sustenta o valor (para o advogado conferir)"},
+        "nao_encontrado": {"type": "boolean"}
+      }
+    },
+    "encargo": {
+      "type": "object",
+      "required": ["tipo", "valor", "financiado", "confianca"],
+      "properties": {
+        "tipo": {"enum": ["tac", "tec", "cadastro", "avaliacao_bem", "registro_contrato", "gravame", "seguro_prestamista", "seguro_outro", "iof", "servico_terceiros", "outro"]},
+        "descricao": {"type": "string"},
+        "valor": {"type": ["number", "null"]},
+        "financiado": {"type": ["boolean", "null"], "description": "true se o valor foi incluído no montante financiado"},
+        "pagina": {"type": ["integer", "null"]},
+        "confianca": {"enum": ["alta", "media", "baixa"]},
+        "trecho": {"type": ["string", "null"]}
+      }
+    }
+  },
+  "type": "object",
+  "required": ["documento", "contrato", "financiamento", "taxas"],
+  "properties": {
+    "documento": {
+      "type": "object",
+      "required": ["arquivo", "paginas"],
+      "properties": {
+        "arquivo": {"type": "string", "description": "Identificador do arquivo (sem dados pessoais no nome)"},
+        "paginas": {"type": "integer"},
+        "qualidade_leitura": {"enum": ["boa", "regular", "ruim"]},
+        "observacoes": {"type": "string"}
+      }
+    },
+    "contrato": {
+      "type": "object",
+      "properties": {
+        "numero": {"$ref": "#/$defs/campo"},
+        "banco": {"$ref": "#/$defs/campo"},
+        "data_contratacao": {"$ref": "#/$defs/campo", "description": "AAAA-MM-DD"},
+        "tipo_instrumento": {"$ref": "#/$defs/campo", "description": "CCB, CDC ou outro"}
+      }
+    },
+    "financiamento": {
+      "type": "object",
+      "properties": {
+        "valor_total_financiado": {"$ref": "#/$defs/campo"},
+        "valor_liberado": {"$ref": "#/$defs/campo"},
+        "numero_parcelas": {"$ref": "#/$defs/campo"},
+        "valor_parcela": {"$ref": "#/$defs/campo"},
+        "primeiro_vencimento": {"$ref": "#/$defs/campo", "description": "AAAA-MM-DD"},
+        "sistema_amortizacao": {"$ref": "#/$defs/campo"}
+      }
+    },
+    "taxas": {
+      "type": "object",
+      "properties": {
+        "juros_mensal": {"$ref": "#/$defs/campo", "description": "Fração: 1,99% = 0.0199"},
+        "juros_anual": {"$ref": "#/$defs/campo", "description": "Fração"},
+        "cet_mensal": {"$ref": "#/$defs/campo"},
+        "cet_anual": {"$ref": "#/$defs/campo"},
+        "capitalizacao_expressa": {"$ref": "#/$defs/campo", "description": "true se há cláusula expressa de capitalização"}
+      }
+    },
+    "encargos": {"type": "array", "items": {"$ref": "#/$defs/encargo"}},
+    "inadimplencia": {
+      "type": "object",
+      "properties": {
+        "juros_mora_mensal": {"$ref": "#/$defs/campo"},
+        "multa": {"$ref": "#/$defs/campo"},
+        "comissao_permanencia": {"$ref": "#/$defs/campo", "description": "true se prevista"}
+      }
+    },
+    "garantia": {
+      "type": "object",
+      "properties": {
+        "alienacao_fiduciaria": {"$ref": "#/$defs/campo"},
+        "veiculo_marca": {"$ref": "#/$defs/campo"},
+        "veiculo_modelo": {"$ref": "#/$defs/campo"},
+        "veiculo_ano": {"$ref": "#/$defs/campo"},
+        "veiculo_placa": {"$ref": "#/$defs/campo"}
+      }
+    },
+    "seguro": {
+      "type": "object",
+      "properties": {
+        "contratado": {"$ref": "#/$defs/campo"},
+        "documento_apartado": {"$ref": "#/$defs/campo"},
+        "opcao_de_escolha": {"$ref": "#/$defs/campo", "description": "true se o contrato mostra que o consumidor podia escolher outra seguradora ou recusar"}
+      }
+    },
+    "conferencia_humana": {
+      "type": "object",
+      "description": "Preenchido pelo advogado/assistente após conferir os campos críticos no documento original.",
+      "properties": {
+        "conferido_por": {"type": ["string", "null"]},
+        "conferido_em": {"type": ["string", "null"]},
+        "correcoes": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

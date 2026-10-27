@@ -1,0 +1,60 @@
+# Regras gitleaks para impedir dados de clientes e segredos no repositório.
+# Uso: gitleaks detect --config gitleaks.toml    (e no pre-commit e no CI como check obrigatório)
+# Dados de teste são sintéticos: CPF 000.000.000-00 e CNPJ 00.000.000/0001-00 são permitidos.
+
+title = "Revisional — dados de clientes e segredos"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "cpf-formatado"
+description = "CPF formatado (dado pessoal)"
+regex = '''\b\d{3}\.\d{3}\.\d{3}-\d{2}\b'''
+tags = ["pii", "cpf"]
+[rules.allowlist]
+regexes = ['''0{3}\.0{3}\.0{3}-0{2}''']
+
+[[rules]]
+id = "cpf-com-rotulo"
+description = "CPF sem pontuação precedido do rótulo CPF"
+regex = '''(?i)cpf\D{0,6}\d{11}\b'''
+tags = ["pii", "cpf"]
+
+[[rules]]
+id = "cnpj-formatado"
+description = "CNPJ formatado"
+regex = '''\b\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}\b'''
+tags = ["pii", "cnpj"]
+[rules.allowlist]
+regexes = ['''0{2}\.0{3}\.0{3}/0{3}1-0{2}''']
+
+[[rules]]
+id = "placa-veiculo"
+description = "Placa de veículo (padrão antigo ou Mercosul)"
+regex = '''\b[A-Z]{3}-?\d[A-Z0-9]\d{2}\b'''
+tags = ["pii", "placa"]
+[rules.allowlist]
+regexes = ['''AAA-?0[A0]00''']
+
+[[rules]]
+id = "numero-contrato"
+description = "Número de contrato/CCB com dígitos"
+regex = '''(?i)(?:contrato|ccb|c[ée]dula)\s*(?:n[ºo.°]*\s*)?[:#]?\s*\d[\d./-]{4,}'''
+tags = ["pii", "contrato"]
+
+[[rules]]
+id = "telefone-br"
+description = "Telefone brasileiro com DDD"
+regex = '''(?:\+55\s?)?\(\d{2}\)\s?9?\d{4}-?\d{4}\b'''
+tags = ["pii", "telefone"]
+
+[[rules]]
+id = "supabase-service-role"
+description = "Chave service_role do Supabase em texto"
+regex = '''(?i)service_role["'\s:=]+eyJ[\w-]+\.[\w-]+\.[\w-]+'''
+tags = ["secret", "supabase"]
+
+[allowlist]
+description = "Documentação e fixtures sintéticas"
+paths = ['''(^|/)tests/golden/.*''', '''(^|/)docs/exemplos/.*''', '''(^|/)test_pseudonimizar\.py$''', '''(^|/)gitleaks\.toml$''']

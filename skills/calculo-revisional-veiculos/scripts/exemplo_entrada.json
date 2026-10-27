@@ -1,0 +1,30 @@
+{
+  "caso": {"cliente": "CLIENTE SINTÉTICO", "contrato": "000-EXEMPLO"},
+  "contrato": {
+    "valor_financiado": 30000.00,
+    "parcelas": 48,
+    "taxa_mensal_contratada": 0.0199,
+    "taxa_anual_contratada": null,
+    "parcela_cobrada": 1400.00,
+    "data_contratacao": "2022-05-10",
+    "primeiro_vencimento": "2022-06-10",
+    "encargos_financiados": 1200.00
+  },
+  "pagamentos": {"quantidade_pagas": 20},
+  "referencia": {
+    "serie": "SGS 25471",
+    "competencia": "2022-05",
+    "data_consulta": "2026-10-27",
+    "valor_bruto_percentual": 1.80,
+    "taxa_mensal": 0.018,
+    "observacao": "Valor ilustrativo de teste. Substituir pelo valor lido da série oficial do mês de contratação."
+  },
+  "data_base": "2026-10-27",
+  "regimes": [
+    {"inicio": "2000-01-01", "indice_mensal": 0.004, "juros_mensal": 0.01, "descricao": "Exemplo: INPC/tabela do TJ + 1% a.m."},
+    {"inicio": "2024-08-30", "indice_mensal": 0.004, "juros_mensal": 0.00379, "descricao": "Exemplo: IPCA + taxa legal (Lei 14.905/2024) — conferir valores no SGS"}
+  ],
+  "repeticao": {"aplicar_dobro": true, "dobro_a_partir_de": "2021-03-30", "ma_fe_antes": false},
+  "multiplo_alerta": 1.5,
+  "regras_versao": "kb-2026-10-27"
+}

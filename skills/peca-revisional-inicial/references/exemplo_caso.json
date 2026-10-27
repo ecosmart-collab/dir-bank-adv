@@ -1,0 +1,44 @@
+{
+  "juizo": "VARA CÍVEL DA COMARCA DE EXEMPLO/UF",
+  "cliente": {
+    "nome": "Cliente Sintético da Silva",
+    "nacionalidade": "brasileiro(a)",
+    "estado_civil": "solteiro(a)",
+    "profissao": "autônomo(a)",
+    "cpf": "000.000.000-00",
+    "endereco": "Rua Exemplo, 123, Bairro, Cidade/UF"
+  },
+  "banco": {
+    "razao_social": "Banco Exemplo S.A.",
+    "cnpj": "00.000.000/0001-00",
+    "endereco": "Avenida Exemplo, 1000, Cidade/UF"
+  },
+  "contrato": {
+    "numero": "000-EXEMPLO",
+    "data_contratacao": "2022-05-10",
+    "valor_financiado": 30000.00,
+    "parcelas": 48,
+    "parcela_cobrada": 1400.00,
+    "taxa_mensal": 0.0199,
+    "taxa_anual": null,
+    "encargos_financiados": 1200.00,
+    "veiculo": {"marca": "Marca", "modelo": "Modelo", "ano": "2019", "placa": "AAA0A00"}
+  },
+  "teses": ["juros", "capitalizacao", "tarifas"],
+  "gratuidade": true,
+  "conciliacao": true,
+  "tutela": {"depositar_incontroverso": true, "abstencao_negativacao": true, "manutencao_posse": true},
+  "doc_calculo": "5",
+  "calculo_arquivo": "calculo_saida.json",
+  "fatos_adicionais": "",
+  "fundamentos_adicionais_juros": "",
+  "capitalizacao_fundamento": "o contrato não informa a taxa anual nem traz cláusula expressa de capitalização mensal.",
+  "encargos_descricao": "tarifa de cadastro, tarifa de avaliação do bem e ressarcimento de registro do contrato.",
+  "tarifas_fundamento": "",
+  "seguro_fundamento": "",
+  "comissao_fundamento": "",
+  "cidade": "Cidade",
+  "data_peticao": "2026-10-27",
+  "valor_causa": 0,
+  "advogado": {"nome": "Advogado(a) Responsável", "oab": "UF 00000"}
+}

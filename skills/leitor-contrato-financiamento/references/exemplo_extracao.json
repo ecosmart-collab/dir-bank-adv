@@ -1,0 +1,45 @@
+{
+  "documento": {"arquivo": "contrato-exemplo-0001.pdf", "paginas": 6, "qualidade_leitura": "boa", "observacoes": "Contrato sintético para teste."},
+  "contrato": {
+    "numero": {"valor": "000-EXEMPLO", "pagina": 1, "confianca": "alta", "trecho": "Cédula de Crédito Bancário nº 000-EXEMPLO"},
+    "banco": {"valor": "Banco Exemplo S.A.", "pagina": 1, "confianca": "alta", "trecho": "Banco Exemplo S.A."},
+    "data_contratacao": {"valor": "2022-05-10", "pagina": 1, "confianca": "alta", "trecho": "Emissão: 10/05/2022"},
+    "tipo_instrumento": {"valor": "CCB", "pagina": 1, "confianca": "alta", "trecho": "Cédula de Crédito Bancário"}
+  },
+  "financiamento": {
+    "valor_total_financiado": {"valor": 30000.00, "pagina": 2, "confianca": "alta", "trecho": "Valor total financiado: R$ 30.000,00"},
+    "valor_liberado": {"valor": 28800.00, "pagina": 2, "confianca": "alta", "trecho": "Valor líquido liberado: R$ 28.800,00"},
+    "numero_parcelas": {"valor": 48, "pagina": 2, "confianca": "alta", "trecho": "Prazo: 48 parcelas"},
+    "valor_parcela": {"valor": 1400.00, "pagina": 2, "confianca": "alta", "trecho": "Valor da parcela: R$ 1.400,00"},
+    "primeiro_vencimento": {"valor": "2022-06-10", "pagina": 2, "confianca": "alta", "trecho": "1º vencimento: 10/06/2022"},
+    "sistema_amortizacao": {"valor": null, "pagina": null, "confianca": "baixa", "trecho": null, "nao_encontrado": true}
+  },
+  "taxas": {
+    "juros_mensal": {"valor": 0.0199, "pagina": 2, "confianca": "alta", "trecho": "Taxa de juros: 1,99% a.m."},
+    "juros_anual": {"valor": null, "pagina": null, "confianca": "media", "trecho": null, "nao_encontrado": true},
+    "cet_mensal": {"valor": 0.0231, "pagina": 2, "confianca": "media", "trecho": "CET: 2,31% a.m."},
+    "cet_anual": {"valor": null, "pagina": null, "confianca": "baixa", "trecho": null, "nao_encontrado": true},
+    "capitalizacao_expressa": {"valor": false, "pagina": null, "confianca": "media", "trecho": null, "nao_encontrado": true}
+  },
+  "encargos": [
+    {"tipo": "cadastro", "descricao": "Tarifa de cadastro", "valor": 600.00, "financiado": true, "pagina": 2, "confianca": "alta", "trecho": "Tarifa de cadastro R$ 600,00"},
+    {"tipo": "avaliacao_bem", "descricao": "Avaliação do bem", "valor": 350.00, "financiado": true, "pagina": 2, "confianca": "alta", "trecho": "Avaliação do bem R$ 350,00"},
+    {"tipo": "registro_contrato", "descricao": "Registro do contrato", "valor": 250.00, "financiado": true, "pagina": 2, "confianca": "alta", "trecho": "Registro do contrato R$ 250,00"}
+  ],
+  "inadimplencia": {
+    "juros_mora_mensal": {"valor": 0.01, "pagina": 4, "confianca": "alta", "trecho": "juros de mora de 1% ao mês"},
+    "multa": {"valor": 0.02, "pagina": 4, "confianca": "alta", "trecho": "multa de 2%"},
+    "comissao_permanencia": {"valor": false, "pagina": 4, "confianca": "media", "trecho": null, "nao_encontrado": true}
+  },
+  "garantia": {
+    "alienacao_fiduciaria": {"valor": true, "pagina": 3, "confianca": "alta", "trecho": "alienação fiduciária"},
+    "veiculo_marca": {"valor": "Marca", "pagina": 3, "confianca": "alta", "trecho": "Marca"},
+    "veiculo_modelo": {"valor": "Modelo", "pagina": 3, "confianca": "alta", "trecho": "Modelo"},
+    "veiculo_ano": {"valor": "2019", "pagina": 3, "confianca": "alta", "trecho": "Ano 2019"},
+    "veiculo_placa": {"valor": "AAA0A00", "pagina": 3, "confianca": "alta", "trecho": "Placa AAA0A00"}
+  },
+  "seguro": {
+    "contratado": {"valor": false, "pagina": null, "confianca": "media", "trecho": null, "nao_encontrado": true}
+  },
+  "conferencia_humana": {"conferido_por": null, "conferido_em": null, "correcoes": []}
+}

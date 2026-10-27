@@ -1,0 +1,410 @@
+# Base curada de súmulas, temas e normas — revisional bancária de veículos
+# kb_versao: kb-2026-10-27
+#
+# ATENÇÃO: foi montada a partir de relatório de pesquisa (out/2026) e de fontes secundárias.
+# Enquanto "verificado_em" for null, a entrada está PENDENTE DE CONFERÊNCIA no portal oficial pelo
+# advogado responsável. Pode ser usada em RASCUNHO, nunca em peça final sem conferência.
+# Para registrar a conferência: preencher verificado_em (AAAA-MM-DD) e verificado_por (nome do advogado).
+#
+# status: consolidado | controverso | pendente | superado | mudou
+# tipo: sumula | tema | precedente | lei | decisao_stf
+# 'numeros' lista os números cobertos pela entrada (usado pelo validador de citações).
+
+meta:
+  kb_versao: "kb-2026-10-27"
+  origem: "Relatório de pesquisa jurídica e técnica, out/2026 (fontes oficiais e secundárias)"
+  aviso: "Não é parecer jurídico. Conferir no portal oficial do tribunal antes de cada uso processual."
+
+entradas:
+  # ---------- Juros remuneratórios ----------
+  - id: STF-S-596
+    tipo: sumula
+    tribunal: STF
+    numeros: [596]
+    titulo: "Lei de Usura e instituições financeiras"
+    tese: "As disposições do Decreto 22.626/33 (Lei de Usura) não se aplicam às taxas de juros das instituições integrantes do Sistema Financeiro Nacional."
+    status: consolidado
+    aplica_a: [juros]
+    fonte: "Portal STF — súmulas"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-S-382
+    tipo: sumula
+    tribunal: STJ
+    numeros: [382]
+    titulo: "Juros acima de 12% a.a."
+    tese: "Taxa de juros remuneratórios superior a 12% ao ano não indica, por si só, abusividade."
+    status: consolidado
+    aplica_a: [juros]
+    fonte: "https://www.stj.jus.br/docs_internet/jurisprudencia/tematica/download/SU/Verbetes/VerbetesSTJ_asc.pdf"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-S-530
+    tipo: sumula
+    tribunal: STJ
+    numeros: [530]
+    titulo: "Taxa média quando a taxa contratada não é comprovada"
+    tese: "Na falta de pactuação ou de prova da taxa contratada, aplica-se a taxa média de mercado do BACEN, salvo se a taxa cobrada for mais vantajosa ao devedor."
+    status: consolidado
+    aplica_a: [juros]
+    fonte: "https://www.stj.jus.br/docs_internet/jurisprudencia/tematica/download/SU/Verbetes/VerbetesSTJ_asc.pdf"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-REsp-1061530-RS
+    tipo: tema
+    tribunal: STJ
+    numeros: [24, 25, 26, 27, 28, 29]
+    precedentes: [1061530]
+    titulo: "REsp 1.061.530/RS — orientações sobre juros remuneratórios, capitalização, mora (Temas 24 a 29)"
+    tese: "A revisão de juros remuneratórios é excepcional: exige relação de consumo e abusividade demonstrada no caso concreto; juros acima de 12% a.a. não são abusivos por si sós. O reconhecimento de abusividade nos encargos da normalidade descaracteriza a mora; o ajuizamento isolado da revisional não a descaracteriza."
+    status: consolidado
+    aplica_a: [juros, mora]
+    observacao: "A divisão exata das orientações por número de tema deve ser conferida no portal do STJ. A 'régua de 1,5x a média' NÃO é tese vinculante deste repetitivo."
+    fonte: "https://processo.stj.jus.br/repetitivos/temas_repetitivos/pesquisa.jsp?novaConsulta=true&tipo_pesquisa=T&cod_tema_inicial=27&cod_tema_final=27"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-REsp-2200194-RS
+    tipo: precedente
+    tribunal: STJ
+    numeros: [2200194]
+    titulo: "REsp 2.200.194/RS (4ª Turma, 26/5/2025)"
+    tese: "A abusividade dos juros remuneratórios não pode ser reconhecida apenas com base na taxa média de mercado; devem ser consideradas as peculiaridades do caso concreto."
+    status: consolidado
+    aplica_a: [juros]
+    observacao: "Precedente de Turma, não vinculante. Indica a tendência atual."
+    fonte: "Portal STJ — jurisprudência (conferir inteiro teor)"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-T-1378
+    tipo: tema
+    tribunal: STJ
+    numeros: [1378]
+    titulo: "Tema 1.378 — critérios de abusividade dos juros remuneratórios"
+    tese: "Afetado em 2/9/2025 (REsps paradigma 2.227.276/AL, 2.227.280/PR, 2.227.287/MG e 2.227.844/RS). Discute (I) se a taxa média do BACEN, ou outro critério prévio, basta como fundamento exclusivo de abusividade e (II) se cabe REsp para rediscutir a abusividade baseada em fatos. REsps e AREsps sobre a matéria estão suspensos. SEM TESE FIXADA até out/2026."
+    status: pendente
+    aplica_a: [juros]
+    observacao: "Pode ser julgado a qualquer momento. Prognósticos de comentaristas são especulação. Reavaliar todas as peças em curso quando houver julgamento."
+    fonte: "https://www.stj.jus.br/sites/portalp/Paginas/Comunicacao/Noticias/2025/15102025-Aberto-prazo-para-amici-curiae-em-repetitivo-sobre-criterios-de-juros-abusivos-nos-contratos-bancarios.aspx"
+    verificado_em: null
+    verificado_por: null
+
+  # ---------- Capitalização ----------
+  - id: STJ-S-539
+    tipo: sumula
+    tribunal: STJ
+    numeros: [539]
+    titulo: "Capitalização de juros em contratos do SFN"
+    tese: "É permitida a capitalização de juros com periodicidade inferior à anual em contratos celebrados com instituições financeiras a partir de 31/3/2000 (MP 1.963-17/2000, reeditada como MP 2.170-36/2001), desde que expressamente pactuada."
+    status: consolidado
+    aplica_a: [capitalizacao]
+    fonte: "https://www.stj.jus.br/docs_internet/jurisprudencia/tematica/download/SU/Verbetes/VerbetesSTJ_asc.pdf"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-S-541
+    tipo: sumula
+    tribunal: STJ
+    numeros: [541, 247]
+    titulo: "Duodécuplo — taxa anual superior a 12x a mensal"
+    tese: "A previsão no contrato bancário de taxa de juros anual superior ao duodécuplo da mensal é suficiente para permitir a cobrança da taxa efetiva anual contratada (Súmula 541; Tema 247)."
+    status: consolidado
+    aplica_a: [capitalizacao]
+    fonte: "https://www.stj.jus.br/docs_internet/jurisprudencia/tematica/download/SU/Verbetes/VerbetesSTJ_asc.pdf"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-T-953
+    tipo: tema
+    tribunal: STJ
+    numeros: [953]
+    titulo: "Capitalização sem pactuação"
+    tese: "Sem pactuação expressa, nem a capitalização anual é devida."
+    status: consolidado
+    aplica_a: [capitalizacao]
+    observacao: "Redação conforme relatório; conferir a tese literal no portal do STJ."
+    fonte: "Portal STJ — Recursos Repetitivos"
+    verificado_em: null
+    verificado_por: null
+
+  # ---------- Comissão de permanência ----------
+  - id: STJ-S-30
+    tipo: sumula
+    tribunal: STJ
+    numeros: [30]
+    titulo: "Comissão de permanência e correção monetária"
+    tese: "A comissão de permanência e a correção monetária são inacumuláveis."
+    status: consolidado
+    aplica_a: [comissao_permanencia]
+    fonte: "https://www.stj.jus.br/docs_internet/jurisprudencia/tematica/download/SU/Verbetes/VerbetesSTJ_asc.pdf"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-S-294
+    tipo: sumula
+    tribunal: STJ
+    numeros: [294]
+    titulo: "Comissão de permanência — taxa média limitada ao contratado"
+    tese: "Não é potestativa a comissão de permanência calculada pela taxa média de mercado do BACEN, limitada à taxa do contrato."
+    status: consolidado
+    aplica_a: [comissao_permanencia]
+    fonte: "https://www.stj.jus.br/docs_internet/jurisprudencia/tematica/download/SU/Verbetes/VerbetesSTJ_asc.pdf"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-S-296
+    tipo: sumula
+    tribunal: STJ
+    numeros: [296]
+    titulo: "Juros remuneratórios no período de inadimplência"
+    tese: "Os juros remuneratórios, não cumuláveis com a comissão de permanência, são devidos no período de inadimplência à taxa média de mercado, limitada ao percentual contratado."
+    status: consolidado
+    aplica_a: [comissao_permanencia, juros]
+    fonte: "https://www.stj.jus.br/docs_internet/jurisprudencia/tematica/download/SU/Verbetes/VerbetesSTJ_asc.pdf"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-S-472
+    tipo: sumula
+    tribunal: STJ
+    numeros: [472]
+    titulo: "Limite da comissão de permanência"
+    tese: "A cobrança de comissão de permanência exclui juros remuneratórios, moratórios e multa contratual, e não pode ultrapassar a soma dos encargos remuneratórios e moratórios previstos no contrato."
+    status: consolidado
+    aplica_a: [comissao_permanencia]
+    fonte: "https://www.stj.jus.br/docs_internet/jurisprudencia/tematica/download/SU/Verbetes/VerbetesSTJ_asc.pdf"
+    verificado_em: null
+    verificado_por: null
+
+  # ---------- Tarifas e seguros ----------
+  - id: STJ-T-618-619
+    tipo: tema
+    tribunal: STJ
+    numeros: [618, 619]
+    titulo: "TAC e TEC (REsp 1.251.331/RS e 1.255.573/RS; Súmula 565)"
+    tese: "As tarifas de abertura de crédito (TAC) e de emissão de carnê (TEC) só são válidas em contratos anteriores a 30/4/2008 (Res. CMN 3.518/2007)."
+    status: consolidado
+    aplica_a: [tarifas]
+    observacao: "Súmula 565/STJ. Conferir a redação literal das teses no portal do STJ."
+    fonte: "https://scon.stj.jus.br/SCON/recrep/toc.jsp?LREF=REPETITIVOS&tema=%27618%27+OU+%27619%27+OU+%27620%27+OU+%27621%27"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-S-565
+    tipo: sumula
+    tribunal: STJ
+    numeros: [565]
+    titulo: "TAC e TEC"
+    tese: "A pactuação da tarifa de abertura de crédito (TAC) e da tarifa de emissão de carnê (TEC) em contratos bancários posteriores ao término da vigência da Res. CMN 2.303/96 pode ser reputada válida somente até 30/4/2008 (início da vigência da Res. CMN 3.518/2007)."
+    status: consolidado
+    aplica_a: [tarifas]
+    observacao: "Redação a conferir no portal; sintetizada do relatório."
+    fonte: "https://www.stj.jus.br/docs_internet/jurisprudencia/tematica/download/SU/Verbetes/VerbetesSTJ_asc.pdf"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-T-620
+    tipo: tema
+    tribunal: STJ
+    numeros: [620]
+    titulo: "Tarifa de cadastro (Súmula 566)"
+    tese: "A tarifa de cadastro é válida, mas somente no início do relacionamento entre o consumidor e a instituição."
+    status: consolidado
+    aplica_a: [tarifas]
+    fonte: "https://scon.stj.jus.br/SCON/recrep/toc.jsp?LREF=REPETITIVOS&tema=%27618%27+OU+%27619%27+OU+%27620%27+OU+%27621%27"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-S-566
+    tipo: sumula
+    tribunal: STJ
+    numeros: [566]
+    titulo: "Tarifa de cadastro"
+    tese: "Nos contratos bancários posteriores a 30/4/2008, é válida a tarifa de cadastro cobrada no início do relacionamento entre o consumidor e a instituição financeira."
+    status: consolidado
+    aplica_a: [tarifas]
+    observacao: "Redação a conferir no portal; sintetizada do relatório."
+    fonte: "https://www.stj.jus.br/docs_internet/jurisprudencia/tematica/download/SU/Verbetes/VerbetesSTJ_asc.pdf"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-T-958
+    tipo: tema
+    tribunal: STJ
+    numeros: [958]
+    titulo: "Tarifa de avaliação do bem, registro do contrato e serviços de terceiros (REsp 1.578.553/SP)"
+    tese: "Tarifas de avaliação do bem e ressarcimento de registro são válidas, ressalvadas a cobrança por serviço não efetivamente prestado e a onerosidade excessiva em cada caso. Trata também da cobrança por serviços de terceiros."
+    status: consolidado
+    aplica_a: [tarifas]
+    observacao: "Na prática dos tribunais, a prova decide: o banco comprovou o registro/avaliação? Tendência de afastar registro sem comprovação."
+    fonte: "Portal STJ — Recursos Repetitivos"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-T-972
+    tipo: tema
+    tribunal: STJ
+    numeros: [972]
+    titulo: "Pré-gravame e seguro (REsp 1.639.320/SP)"
+    tese: "É abusiva a cláusula de pré-gravame em contratos a partir de 25/2/2011. O consumidor não pode ser compelido a contratar seguro com a instituição financeira ou com seguradora por ela indicada. A abusividade de encargos acessórios não descaracteriza a mora."
+    status: consolidado
+    aplica_a: [tarifas, seguro, mora]
+    fonte: "https://tesesesumulas.com.br/tese/stj/972"
+    observacao: "Fonte secundária; conferir tese literal no portal do STJ."
+    verificado_em: null
+    verificado_por: null
+
+  # ---------- Mora e busca e apreensão ----------
+  - id: STJ-S-72
+    tipo: sumula
+    tribunal: STJ
+    numeros: [72]
+    titulo: "Comprovação da mora na busca e apreensão"
+    tese: "A comprovação da mora é imprescindível à busca e apreensão do bem alienado fiduciariamente."
+    status: consolidado
+    aplica_a: [busca_apreensao, mora]
+    fonte: "https://www.stj.jus.br/docs_internet/jurisprudencia/tematica/download/SU/Verbetes/VerbetesSTJ_asc.pdf"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-S-380
+    tipo: sumula
+    tribunal: STJ
+    numeros: [380]
+    titulo: "Revisional e mora"
+    tese: "A simples propositura da ação de revisão de contrato não inibe a caracterização da mora do autor."
+    status: consolidado
+    aplica_a: [mora, tutela]
+    fonte: "https://www.stj.jus.br/docs_internet/jurisprudencia/tematica/download/SU/Verbetes/VerbetesSTJ_asc.pdf"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-S-284
+    tipo: sumula
+    tribunal: STJ
+    numeros: [284]
+    titulo: "Purga da mora com 40% pagos"
+    tese: "Não foi formalmente cancelada, mas é considerada superada para contratos regidos pela Lei 10.931/2004; o Tema 722 exige o pagamento da integralidade da dívida pendente."
+    status: superado
+    aplica_a: [busca_apreensao]
+    fonte: "https://www.migalhas.com.br/quentes/202440/purgacao-da-mora-exige-pagamento-integral-da-divida-em-contrato-posterior-a-lei-10931"
+    observacao: "Não citar como fundamento. Fonte secundária."
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-T-722
+    tipo: tema
+    tribunal: STJ
+    numeros: [722]
+    titulo: "Purga da mora (REsp 1.418.593/MS)"
+    tese: "Para a purga da mora, exige-se o pagamento da integralidade da dívida pendente, em 5 dias após a execução da liminar."
+    status: consolidado
+    aplica_a: [busca_apreensao]
+    observacao: "Redação confirmada apenas em fonte secundária; conferir no portal do STJ."
+    fonte: "https://www.migalhas.com.br/quentes/202440/purgacao-da-mora-exige-pagamento-integral-da-divida-em-contrato-posterior-a-lei-10931"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STJ-T-1132
+    tipo: tema
+    tribunal: STJ
+    numeros: [1132]
+    titulo: "Notificação do devedor (REsp 1.951.662/RS)"
+    tese: "Basta o envio da notificação ao endereço do contrato, dispensando-se a prova do recebimento, pelo devedor ou por terceiros."
+    status: consolidado
+    aplica_a: [busca_apreensao, mora]
+    observacao: "Aplicação ainda controversa em parte dos TJs (endereço insuficiente, carta não procurada)."
+    fonte: "https://tesesesumulas.com.br/tese/stj/1132"
+    verificado_em: null
+    verificado_por: null
+
+  - id: STF-ADIs-7600-7601-7608
+    tipo: decisao_stf
+    tribunal: STF
+    numeros: [7600, 7601, 7608]
+    titulo: "Busca e apreensão extrajudicial (Lei 14.711/2023)"
+    tese: "O STF validou a consolidação e a busca e apreensão extrajudiciais, com interpretação conforme (sessão virtual encerrada em 30/6/2025). Exige cláusula expressa, veda ingresso forçado e perseguição do devedor, e só permite uso de dados públicos."
+    status: mudou
+    aplica_a: [busca_apreensao]
+    fonte: "https://noticias.stf.jus.br/postsnoticias/stf-valida-perda-extrajudicial-de-bens-em-caso-de-nao-pagamento-de-dividas/"
+    verificado_em: null
+    verificado_por: null
+
+  # ---------- Repetição do indébito e prescrição ----------
+  - id: STJ-EAREsp-676608-RS
+    tipo: precedente
+    tribunal: STJ
+    numeros: [676608, 600663]
+    titulo: "EAREsp 676.608/RS e 600.663/RS (Corte Especial, DJe 30/3/2021)"
+    tese: "A repetição em dobro (CDC, art. 42, parágrafo único) independe de elemento volitivo e cabe quando a cobrança contraria a boa-fé objetiva. Modulação: nos contratos de consumo privados, o dobro vale apenas para cobranças posteriores a 30/3/2021."
+    status: consolidado
+    aplica_a: [dobro]
+    fonte: "Portal STJ — jurisprudência (conferir inteiro teor)"
+    verificado_em: null
+    verificado_por: null
+
+  - id: CC-205
+    tipo: lei
+    tribunal: ""
+    numeros: [205]
+    titulo: "Código Civil, art. 205 — prescrição decenal"
+    tese: "Prazo prescricional geral de 10 anos, aplicado pelos tribunais à revisão e à repetição de indébito em contrato bancário. O termo inicial (cada pagamento x assinatura) é controverso."
+    status: controverso
+    aplica_a: [prescricao]
+    fonte: "Planalto — Lei 10.406/2002"
+    verificado_em: null
+    verificado_por: null
+
+  # ---------- Processo e normas ----------
+  - id: CPC-330
+    tipo: lei
+    tribunal: ""
+    numeros: [330]
+    titulo: "CPC, art. 330, §§2º e 3º — obrigações controvertidas e valor incontroverso"
+    tese: "Na revisional de obrigação decorrente de empréstimo, financiamento ou alienação de bens, o autor deve discriminar na inicial as obrigações que pretende controverter e quantificar o valor incontroverso, sob pena de inépcia; o valor incontroverso deve continuar sendo pago no tempo e modo contratados."
+    status: consolidado
+    aplica_a: [inicial]
+    fonte: "https://www.peticoesonline.com.br/topicos-do-direito/cpc-art-330-ss-2o-0"
+    verificado_em: null
+    verificado_por: null
+
+  - id: L-14905-2024
+    tipo: lei
+    tribunal: ""
+    numeros: [14905]
+    titulo: "Lei 14.905/2024 — IPCA e taxa legal (CC, arts. 389 e 406)"
+    tese: "A partir de 30/8/2024, na falta de índice convencionado ou previsto em lei, aplica-se o IPCA à correção e a taxa legal (Selic menos o índice de atualização, piso zero; Res. CMN 5.171/2024) aos juros."
+    status: mudou
+    aplica_a: [atualizacao]
+    observacao: "Há debate doutrinário sobre a equivalência exata entre taxa legal e 'Selic menos IPCA'."
+    fonte: "https://www.barbieriadvogados.com/lei-14-905-2024-reforma-do-artigo-406-e-transicao-normativa-impactos-prospectivos/"
+    verificado_em: null
+    verificado_por: null
+
+  - id: L-14711-2023
+    tipo: lei
+    tribunal: ""
+    numeros: [14711]
+    titulo: "Lei 14.711/2023 — marco legal das garantias"
+    tese: "Criou a consolidação e a busca e apreensão extrajudiciais (arts. 8º-B a 8º-E do DL 911/69). No prazo de 5 dias úteis após a apreensão, o devedor pode pagar a integralidade da dívida (art. 8º-C, §9º); na via judicial, os 5 dias são corridos."
+    status: mudou
+    aplica_a: [busca_apreensao]
+    fonte: "https://www.cnbms.org.br/stf-forma-maioria-para-validar-busca-e-apreensao-extrajudicial-de-bens/"
+    verificado_em: null
+    verificado_por: null
+
+  - id: L-14181-2021
+    tipo: lei
+    tribunal: ""
+    numeros: [14181]
+    titulo: "Lei 14.181/2021 — superendividamento (CDC, arts. 104-A a 104-C)"
+    tese: "Mínimo existencial de R$ 600 (Decreto 11.150/2022, na redação do Decreto 11.567/2023). Em 23/4/2026 o STF concluiu as ADPFs 1005, 1006 e 1097: manteve o valor, determinou estudos técnicos anuais do CMN e considerou inconstitucional a exclusão do consignado do cálculo. Dívidas com garantia real costumam ficar fora da repactuação."
+    status: mudou
+    aplica_a: [superendividamento]
+    fonte: "https://noticias.stf.jus.br/postsnoticias/stf-suspende-analise-do-valor-do-minimo-existencial-em-negociacoes-de-superendividamento/"
+    verificado_em: null
+    verificado_por: null

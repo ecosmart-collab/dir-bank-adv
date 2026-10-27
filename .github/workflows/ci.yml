@@ -1,0 +1,34 @@
+name: CI
+on:
+  push: { branches: [main] }
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install pyyaml
+      - run: node apps/revisional/test.js
+      - run: python3 skills/calculo-revisional-veiculos/scripts/test_calc.py
+      - run: python3 skills/compliance-oab-lgpd/scripts/test_pseudonimizar.py
+      - run: python3 skills/prazos-processuais/scripts/test_contar_prazo.py
+      - name: Cadeia de exemplo (cálculo, peça, citações)
+        run: |
+          python3 skills/calculo-revisional-veiculos/scripts/calc_revisional.py skills/calculo-revisional-veiculos/scripts/exemplo_entrada.json > skills/peca-revisional-inicial/references/calculo_saida.json
+          python3 skills/peca-revisional-inicial/scripts/montar_peca.py skills/peca-revisional-inicial/references/exemplo_caso.json /tmp/peca.md || true
+          python3 skills/legal-kb-revisional/scripts/validar_citacoes.py /tmp/peca.md
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_CONFIG: gitleaks.toml

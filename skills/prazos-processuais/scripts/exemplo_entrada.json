@@ -1,0 +1,9 @@
+{
+  "descricao": "Contestação do banco (exemplo sintético)",
+  "evento": "2026-03-02",
+  "modo": "dje",
+  "prazo": 15,
+  "tipo": "uteis",
+  "multiplicador": 1,
+  "feriados": ["2026-04-03", "2026-04-21", "2026-05-01", "2026-06-04"]
+}
